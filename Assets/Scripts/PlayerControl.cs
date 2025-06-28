@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
     private PlayerInput _playerInput;
     private InputAction _actionGrab, _actionJump;
 
-    private Transform _transform;
     private Rigidbody2D _rigidbody;
     private SpringJoint2D _springJoint;
     private LineRenderer _lineRenderer;
@@ -45,7 +44,6 @@ public class PlayerControl : MonoBehaviour
     void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
-        _transform = GetComponent<Transform>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _springJoint = GetComponent<SpringJoint2D>();
         _lineRenderer = GetComponent<LineRenderer>();
@@ -78,11 +76,10 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         _isGrounded = _groundDetector.IsGrounded;
-        // _isGrounded = (bool)Physics2D.Raycast(_transform.position, Vector2.down, 0.9f / 2f, _maskLevel);
 
         if (_grabbed)
         {
-            float distanceToConnectedAnchor = Vector2.Distance(_transform.position, _springJointAnchor);
+            float distanceToConnectedAnchor = Vector2.Distance(transform.position, _springJointAnchor);
 
             // Keep minimum distance as new spring distance
             // if (distanceToConnectedAnchor < _springJointDistance)
@@ -102,7 +99,7 @@ public class PlayerControl : MonoBehaviour
             }
 
             // update tongue position
-            Vector3[] positions = { _transform.position, _springJointAnchor };
+            Vector3[] positions = { transform.position, _springJointAnchor };
             _lineRenderer.SetPositions(positions);
             _lineRenderer.enabled = true;
         }
@@ -219,15 +216,15 @@ public class PlayerControl : MonoBehaviour
 
     void PressGrab(InputAction.CallbackContext context)
     {
-        Vector2 dir = (_cursorWorldPos - _transform.position.xy()).normalized;
-        float maxDistance = Vector2.Distance(_cursorWorldPos, _transform.position.xy()) + 4f;
-        var hit = Physics2D.Raycast(_transform.position.xy(), dir, maxDistance, _maskLevel);
+        Vector2 dir = (_cursorWorldPos - transform.position.xy()).normalized;
+        float maxDistance = Vector2.Distance(_cursorWorldPos, transform.position.xy()) + 4f;
+        var hit = Physics2D.Raycast(transform.position.xy(), dir, maxDistance, _maskLevel);
         if (!hit) return;
 
         Vector2 grabPos = hit.point;
 
         // Debug.Log("start Grab");
-        float distance = Mathf.Max(Vector2.Distance(_transform.position, grabPos), 0f);
+        float distance = Mathf.Max(Vector2.Distance(transform.position, grabPos), 0f);
 
         _springJoint.enableCollision = true;
         _springJoint.autoConfigureDistance = false;
