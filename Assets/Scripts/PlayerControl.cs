@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private SpringJoint2D _springJoint;
     private LineRenderer _lineRenderer;
+    private SpriteRenderer _spriteRenderer;
     private Vector2 _cursorWorldPos = Vector2.zero;
 
     private bool _grabbed = false;
@@ -31,7 +32,13 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float _springDampingRatio = 1f;
     [SerializeField] private float _springFrequency = 1f;
 
+    [SerializeField] private Sprite[] _spriteIdle;
+    // [SerializeField] private Sprite[] _spriteIdleTongue;
+    // [SerializeField] private Sprite[] _spriteJumpRight;
+    // [SerializeField] private Sprite[] _spriteJumpFront;
+
     Coroutine _realInCoroutine = null;
+    Coroutine _idleAnimationCoroutine = null;
 
     void Awake()
     {
@@ -40,12 +47,18 @@ public class PlayerControl : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _springJoint = GetComponent<SpringJoint2D>();
         _lineRenderer = GetComponent<LineRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _springJoint.enabled = false;
 
         _actionGrab = _playerInput.actions["Grab"];
         _actionJump = _playerInput.actions["Jump"];
 
         _maskLevel = LayerMask.GetMask("Level");
+    }
+
+    void Start()
+    {
+        _idleAnimationCoroutine = StartCoroutine(AnimationIdleCoroutine());
     }
 
     void OnEnable()
@@ -135,7 +148,7 @@ public class PlayerControl : MonoBehaviour
     void PressGrab(InputAction.CallbackContext context)
     {
         Vector2 dir = (_cursorWorldPos - _transform.position.xy()).normalized;
-        float maxDistance = Vector2.Distance(_cursorWorldPos, _transform.position.xy());
+        float maxDistance = Vector2.Distance(_cursorWorldPos, _transform.position.xy()) + 4f;
         var hit = Physics2D.Raycast(_transform.position.xy(), dir, maxDistance, _maskLevel);
         if (!hit) return;
 
@@ -179,14 +192,24 @@ public class PlayerControl : MonoBehaviour
 
         while (true)
         {
-            // if (_isGrounded) yield return null;
             timer -= Time.deltaTime;
             if (timer < 0f) yield break;
 
-            // _springJointDistance -= _RealInDistance * (Time.deltaTime / _RealInDuration);
             _springJoint.distance -= _realInDistance * (Time.deltaTime / _realInDuration);
             _springJointDistance = _springJoint.distance;
             yield return null;
+        }
+    }
+
+    IEnumerator AnimationIdleCoroutine()
+    {
+        while (true)
+        {
+            foreach (Sprite sp in _spriteIdle)
+            {
+                _spriteRenderer.sprite = sp;
+                yield return new WaitForSeconds(0.2f);
+            }
         }
     }
 }
