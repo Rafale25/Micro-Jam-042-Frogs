@@ -178,7 +178,8 @@ public class PlayerControl : MonoBehaviour
 
     void StartAnimation(Sprite[] sprites)
     {
-        StopAnimation();
+        // StopAnimation();
+        if (_animationCoroutine != null) return;
         _animationCoroutine = StartCoroutine(AnimationCoroutine());
     }
 
