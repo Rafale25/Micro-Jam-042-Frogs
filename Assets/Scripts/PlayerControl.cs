@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     private SpringJoint2D _springJoint;
     private LineRenderer _lineRenderer;
     private SpriteRenderer _spriteRenderer;
+    private GroundDetector _groundDetector;
+
     private Vector2 _cursorWorldPos = Vector2.zero;
 
     private bool _grabbed = false;
@@ -34,11 +36,11 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private Sprite[] _spriteIdle;
     // [SerializeField] private Sprite[] _spriteIdleTongue;
-    // [SerializeField] private Sprite[] _spriteJumpRight;
-    // [SerializeField] private Sprite[] _spriteJumpFront;
+    [SerializeField] private Sprite[] _spriteJumpFront;
+    [SerializeField] private Sprite[] _spriteJumpRight;
 
     Coroutine _realInCoroutine = null;
-    Coroutine _idleAnimationCoroutine = null;
+    Coroutine _animationCoroutine = null;
 
     void Awake()
     {
@@ -48,17 +50,13 @@ public class PlayerControl : MonoBehaviour
         _springJoint = GetComponent<SpringJoint2D>();
         _lineRenderer = GetComponent<LineRenderer>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _groundDetector = GetComponentInChildren<GroundDetector>();
         _springJoint.enabled = false;
 
         _actionGrab = _playerInput.actions["Grab"];
         _actionJump = _playerInput.actions["Jump"];
 
         _maskLevel = LayerMask.GetMask("Level");
-    }
-
-    void Start()
-    {
-        _idleAnimationCoroutine = StartCoroutine(AnimationIdleCoroutine());
     }
 
     void OnEnable()
@@ -79,6 +77,9 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        _isGrounded = _groundDetector.IsGrounded;
+        // _isGrounded = (bool)Physics2D.Raycast(_transform.position, Vector2.down, 0.9f / 2f, _maskLevel);
+
         if (_grabbed)
         {
             float distanceToConnectedAnchor = Vector2.Distance(_transform.position, _springJointAnchor);
@@ -110,12 +111,82 @@ public class PlayerControl : MonoBehaviour
             _lineRenderer.enabled = false;
         }
 
-        if (_playerInput.actions["Jump"].IsPressed())
+        if (!_isGrounded)
         {
-            _jumpTimer += Time.deltaTime;
+            StopAnimation();
         }
 
-        _isGrounded = (bool)Physics2D.Raycast(_transform.position, Vector2.down, 0.8f / 2f, _maskLevel);
+        Vector2 playerVelocity = _rigidbody.linearVelocity;
+
+        if (_isGrounded)
+        {
+            if (_playerInput.actions["Jump"].IsPressed())
+            {
+                _jumpTimer += Time.deltaTime;
+                StopAnimation();
+                _spriteRenderer.sprite = _spriteJumpFront[0];
+            }
+            else
+            {
+                StartAnimation(_spriteIdle);
+            }
+        }
+        else
+        {
+            float angle = Mathf.Atan2(playerVelocity.y, playerVelocity.x);
+            // Debug.Log(angle);
+
+            Debug.Log(playerVelocity);
+
+            // Vector2 dir = (_cursorWorldPos - _transform.position.xy()).normalized;
+            // float angle = Mathf.Atan2(dir.y, dir.x);
+            // Debug.Log(angle);
+
+            if (Mathf.Abs(playerVelocity.x) < 0.001f)
+            {
+                if (playerVelocity.y > 0f)
+                {
+                    _spriteRenderer.sprite = playerVelocity.y > 10f ? _spriteJumpFront[1] : _spriteJumpFront[2];
+                }
+                else
+                {
+                    _spriteRenderer.sprite = _spriteJumpFront[3];
+                }
+            }
+            else
+            {
+                if (playerVelocity.y > 3f)
+                {
+                    _spriteRenderer.sprite = _spriteJumpRight[1];
+                }
+                else if (playerVelocity.y > -3f)
+                {
+                    _spriteRenderer.sprite = _spriteJumpRight[2];
+                }
+                else
+                {
+                    _spriteRenderer.sprite = _spriteJumpRight[3];
+                }
+            }
+        }
+
+        if (Mathf.Abs(playerVelocity.x) > 0.001f)
+        {
+            _spriteRenderer.flipX = playerVelocity.x < 0f;
+        }
+    }
+
+    void StartAnimation(Sprite[] sprites)
+    {
+        StopAnimation();
+        _animationCoroutine = StartCoroutine(AnimationCoroutine());
+    }
+
+    void StopAnimation()
+    {
+        if (_animationCoroutine == null) return;
+        StopCoroutine(_animationCoroutine);
+        _animationCoroutine = null;
     }
 
     void PressJump(InputAction.CallbackContext context)
@@ -125,7 +196,7 @@ public class PlayerControl : MonoBehaviour
 
     void ReleaseJump(InputAction.CallbackContext context)
     {
-        Debug.Log("ReleaseJump");
+        // Debug.Log("ReleaseJump");
         Jump();
     }
 
@@ -133,13 +204,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (_isGrounded)
         {
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
             float timer = Mathf.Clamp(_jumpTimer, 0f, _maxJumpTime);
             _rigidbody.AddForceY(_maxJumpForce * Utilities.MapRange(timer, 0f, _maxJumpTime, 0f, 1f));
         }
         else
         {
-            Debug.Log("cannot jump, not grounded!");
+            // Debug.Log("cannot jump, not grounded!");
         }
 
         _jumpTimer = 0f;
@@ -154,7 +225,7 @@ public class PlayerControl : MonoBehaviour
 
         Vector2 grabPos = hit.point;
 
-        Debug.Log("start Grab");
+        // Debug.Log("start Grab");
         float distance = Mathf.Max(Vector2.Distance(_transform.position, grabPos), 0f);
 
         _springJoint.enableCollision = true;
@@ -175,7 +246,7 @@ public class PlayerControl : MonoBehaviour
 
     void ReleaseGrab(InputAction.CallbackContext context)
     {
-        Debug.Log("Release Grab");
+        // Debug.Log("Release Grab");
         _springJoint.enabled = false;
         _grabbed = false;
     }
@@ -201,7 +272,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    IEnumerator AnimationIdleCoroutine()
+    IEnumerator AnimationCoroutine()
     {
         while (true)
         {
