@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,17 +10,28 @@ public class PlayerControl : MonoBehaviour
     private Transform _transform;
     private Rigidbody2D _rigidbody;
     private SpringJoint2D _springJoint;
+    private LineRenderer _lineRenderer;
     private Vector2 _cursorWorldPos = Vector2.zero;
 
     private bool _grabbed = false;
     private Vector2 _springJointAnchor = Vector2.zero;
     private float _springJointDistance = 0f;
 
-    private const float _MaxJumpTime = 0.5f;
-    private const float _MaxJumpForce = 1000f;
+    LayerMask _maskLevel;
+
+    [SerializeField] private float _maxJumpTime = 0.5f;
+    [SerializeField] private float _maxJumpForce = 1000f;
     private float _jumpTimer = 0f;
 
-    // TODO: real in the tongue a little bit over the duration of n second/s after you start grabbing
+    private bool _isGrounded = false;
+
+    [SerializeField] private float _realInDuration = 0.3f;
+    [SerializeField] private float _realInDistance = 1.5f;
+
+    [SerializeField] private float _springDampingRatio = 1f;
+    [SerializeField] private float _springFrequency = 1f;
+
+    Coroutine _realInCoroutine = null;
 
     void Awake()
     {
@@ -28,10 +39,13 @@ public class PlayerControl : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _springJoint = GetComponent<SpringJoint2D>();
+        _lineRenderer = GetComponent<LineRenderer>();
         _springJoint.enabled = false;
 
         _actionGrab = _playerInput.actions["Grab"];
         _actionJump = _playerInput.actions["Jump"];
+
+        _maskLevel = LayerMask.GetMask("Level");
     }
 
     void OnEnable()
@@ -55,6 +69,15 @@ public class PlayerControl : MonoBehaviour
         if (_grabbed)
         {
             float distanceToConnectedAnchor = Vector2.Distance(_transform.position, _springJointAnchor);
+
+            // Keep minimum distance as new spring distance
+            // if (distanceToConnectedAnchor < _springJointDistance)
+            // {
+            //     _springJoint.distance = distanceToConnectedAnchor;
+            //     _springJointDistance = distanceToConnectedAnchor;
+            // }
+
+            // Disable spring if closer than minimum distance to avoid pushing back player
             if (distanceToConnectedAnchor - 0.0001f < _springJointDistance)
             {
                 _springJoint.enabled = false;
@@ -63,12 +86,23 @@ public class PlayerControl : MonoBehaviour
             {
                 _springJoint.enabled = true;
             }
+
+            // update tongue position
+            Vector3[] positions = { _transform.position, _springJointAnchor };
+            _lineRenderer.SetPositions(positions);
+            _lineRenderer.enabled = true;
+        }
+        else
+        {
+            _lineRenderer.enabled = false;
         }
 
         if (_playerInput.actions["Jump"].IsPressed())
         {
             _jumpTimer += Time.deltaTime;
         }
+
+        _isGrounded = (bool)Physics2D.Raycast(_transform.position, Vector2.down, 0.8f / 2f, _maskLevel);
     }
 
     void PressJump(InputAction.CallbackContext context)
@@ -84,12 +118,11 @@ public class PlayerControl : MonoBehaviour
 
     void Jump()
     {
-        LayerMask mask = LayerMask.GetMask("Level");
-        if (Physics2D.Raycast(_transform.position, Vector2.down, 0.8f / 2f, mask))
+        if (_isGrounded)
         {
             Debug.Log("Jump");
-            float timer = Mathf.Clamp(_jumpTimer, 0f, _MaxJumpTime);
-            _rigidbody.AddForceY(_MaxJumpForce * Utilities.MapRange(timer, 0f, _MaxJumpTime, 0f, 1f));
+            float timer = Mathf.Clamp(_jumpTimer, 0f, _maxJumpTime);
+            _rigidbody.AddForceY(_maxJumpForce * Utilities.MapRange(timer, 0f, _maxJumpTime, 0f, 1f));
         }
         else
         {
@@ -101,20 +134,30 @@ public class PlayerControl : MonoBehaviour
 
     void PressGrab(InputAction.CallbackContext context)
     {
+        Vector2 dir = (_cursorWorldPos - _transform.position.xy()).normalized;
+        float maxDistance = Vector2.Distance(_cursorWorldPos, _transform.position.xy());
+        var hit = Physics2D.Raycast(_transform.position.xy(), dir, maxDistance, _maskLevel);
+        if (!hit) return;
+
+        Vector2 grabPos = hit.point;
+
         Debug.Log("start Grab");
-        float distance = Mathf.Max(Vector2.Distance(_transform.position, _cursorWorldPos), 0f);
+        float distance = Mathf.Max(Vector2.Distance(_transform.position, grabPos), 0f);
 
         _springJoint.enableCollision = true;
         _springJoint.autoConfigureDistance = false;
-        _springJoint.dampingRatio = 0.6f;
-        _springJoint.frequency = 1.75f;
-        _springJoint.connectedAnchor = _cursorWorldPos;
+        _springJoint.dampingRatio = _springDampingRatio;
+        _springJoint.frequency = _springFrequency;
+        _springJoint.connectedAnchor = grabPos;
         _springJoint.distance = distance;
         _springJoint.enabled = true;
 
         _grabbed = true;
-        _springJointAnchor = _cursorWorldPos;
+        _springJointAnchor = grabPos;
         _springJointDistance = distance;
+
+        if (_realInCoroutine != null) StopCoroutine(_realInCoroutine);
+        _realInCoroutine = StartCoroutine(RealInCoroutine());
     }
 
     void ReleaseGrab(InputAction.CallbackContext context)
@@ -128,6 +171,22 @@ public class PlayerControl : MonoBehaviour
     {
         Vector2 mousePosition = value.Get<Vector2>();
         _cursorWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
-        // Debug.Log(_cursorWorldPos);
+    }
+
+    IEnumerator RealInCoroutine()
+    {
+        float timer = _realInDuration;
+
+        while (true)
+        {
+            // if (_isGrounded) yield return null;
+            timer -= Time.deltaTime;
+            if (timer < 0f) yield break;
+
+            // _springJointDistance -= _RealInDistance * (Time.deltaTime / _RealInDuration);
+            _springJoint.distance -= _realInDistance * (Time.deltaTime / _realInDuration);
+            _springJointDistance = _springJoint.distance;
+            yield return null;
+        }
     }
 }
