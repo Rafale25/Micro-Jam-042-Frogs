@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class sceneManagerFrog : MonoBehaviour
 {
-
-
     public void Load(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        TransitionManager.Instance.TransitionToScene(sceneName, 0.3f);
     }
 
     public void QuitGame()

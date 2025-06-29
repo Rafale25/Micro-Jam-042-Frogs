@@ -45,9 +45,11 @@ public class TransitionManager : MonoBehaviour
 
         float t = 0;
 
+        duration = Mathf.Max(0.0001f, duration);
+
         while (op.progress < 0.9f || t < 1f)
         {
-            t += Time.deltaTime * duration;
+            t += Time.deltaTime / duration;
             t = Mathf.Clamp01(t);
             _canvasGroup.alpha = t;
             yield return null;
@@ -60,7 +62,7 @@ public class TransitionManager : MonoBehaviour
 
         while (t > 0f)
         {
-            t -= Time.deltaTime * duration;
+            t -= Time.deltaTime / duration;
             t = Mathf.Clamp01(t);
             _canvasGroup.alpha = t;
             yield return null;
