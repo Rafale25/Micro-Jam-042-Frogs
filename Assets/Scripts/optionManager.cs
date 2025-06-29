@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class optionManager : MonoBehaviour
 {
+    public Slider slider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,9 +16,9 @@ public class optionManager : MonoBehaviour
 
     }
 
-    public void VolumeManager(int volume)
+    public void VolumeManager()
     {
-
+        AudioManager.SetMasterVolume(slider.value);
     }
 
     
