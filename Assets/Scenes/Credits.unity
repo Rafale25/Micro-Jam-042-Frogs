@@ -308,7 +308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ewen Le Moarer (Riven) : Programmer \n(Rafale25) : Programmer\nMadeleine
+  m_text: "Ewen Le Loarer (Riven) : Programmer \n(Rafale25) : Programmer\nMadeleine
     Peillon (Egrassah) : Music\nSao My Morel (Sao) : Art\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45bff6dc9f5171b48893a93ad34ea265, type: 2}
