@@ -26,7 +26,11 @@ public class Chrono : MonoBehaviour
     public void StopChrono()
     {
         timerRunning = false;
-        PlayerPrefs.SetFloat("Highscore", chronoTimer);
-        Debug.Log("Stop chrono");
+
+        float currentHighscore = PlayerPrefs.GetFloat("Highscore");
+        if (chronoTimer < currentHighscore)
+        {
+            PlayerPrefs.SetFloat("Highscore", chronoTimer);
+        }
     }
 }
