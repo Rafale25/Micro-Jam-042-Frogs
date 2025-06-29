@@ -17,8 +17,8 @@ public class chrono : MonoBehaviour
         if (timerRunning)
         {
             chronoTimer += Time.deltaTime;
-            
-            timerText.SetText(chronoTimer.ToString("F2"));
+
+            timerText.SetText(chronoTimer.ToString("F1"));
         }
     }
 
