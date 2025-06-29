@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1cb57476533bb49a6f7aeea923bd7d, type: 3}
+  m_Name: Bleh
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 6a9f064a2b87b5d4c87e64c53aaf77bf, type: 3}
+  - {fileID: 8300000, guid: 9a650e7aee907124ead1a38425333dfc, type: 3}
+  - {fileID: 8300000, guid: ea3e1a86178cf8543b5b5111299b943d, type: 3}
+  volume: {x: 1, y: 1}
+  pitch: {x: 1, y: 1}
+  spatialBlend: 0
