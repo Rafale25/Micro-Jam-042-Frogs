@@ -1,25 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class optionManager : MonoBehaviour
+public class OptionManager : MonoBehaviour
 {
-    public Slider slider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void VolumeManager(float value)
     {
-
+        AudioManager.SetMasterVolume(value);
+        print(value);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    public void VolumeManager()
-    {
-        AudioManager.SetMasterVolume(slider.value);
-    }
-
-    
 }
