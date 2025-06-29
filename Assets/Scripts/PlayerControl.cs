@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 _springJointAnchor = Vector2.zero;
     private float _springJointDistance = 0f;
 
-    LayerMask _maskLevel;
+    private LayerMask _maskLevel;
 
     [SerializeField] private float _maxJumpTime = 0.5f;
     [SerializeField] private float _maxJumpForce = 1000f;
@@ -41,11 +41,14 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private GameObject[] _tongueOrigin;
     [SerializeField] private GameObject _tongueOriginParent;
 
-    int _currentTongueOrigin = 0;
-    bool _flipTongueXAxis = false;
+    private int _currentTongueOrigin = 0;
+    private bool _flipTongueXAxis = false;
 
-    Coroutine _realInCoroutine = null;
-    Coroutine _animationCoroutine = null;
+    private Coroutine _realInCoroutine = null;
+    private Coroutine _animationCoroutine = null;
+
+    // Sound effects
+    [SerializeField] private SoundEffectSO _SOGrab;
 
     void Awake()
     {
@@ -255,6 +258,8 @@ public class PlayerControl : MonoBehaviour
 
         if (_realInCoroutine != null) StopCoroutine(_realInCoroutine);
         _realInCoroutine = StartCoroutine(RealInCoroutine());
+
+        _SOGrab.Play();
     }
 
     void ReleaseGrab(InputAction.CallbackContext context)

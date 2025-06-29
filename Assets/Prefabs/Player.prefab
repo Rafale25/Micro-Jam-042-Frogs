@@ -323,7 +323,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 585951966842662488, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
+  m_Sprite: {fileID: -2311659948842064771, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -407,7 +407,14 @@ MonoBehaviour:
   - {fileID: 585951966842662488, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
   - {fileID: -5324252115843577105, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
   - {fileID: 802321206317977270, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
-  _tongueOrigin: []
+  _tongueOrigin:
+  - {fileID: 7636145372713755771}
+  - {fileID: 8119955647204631796}
+  - {fileID: 8417445592904752536}
+  - {fileID: 2668127802666211560}
+  - {fileID: 4023335488879259326}
+  - {fileID: 527234043686800657}
+  - {fileID: 2243178205992818926}
   _tongueOriginParent: {fileID: 8677560594494552651}
 --- !u!114 &1947927289625549244
 MonoBehaviour:
@@ -553,7 +560,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.07}
-  m_Radius: 0.4776544
+  m_Radius: 0.4679821
 --- !u!231 &9078627535530999100
 SpringJoint2D:
   m_ObjectHideFlags: 0
