@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class WinSequence : MonoBehaviour
@@ -9,9 +10,9 @@ public class WinSequence : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerControl playerControl))
+        if (collision.gameObject.TryGetComponent(out PlayerInput playerInput))
         {
-            playerControl.enabled = false;
+            playerInput.enabled = false;
             StartCoroutine(FadeToScene(_nextSceneName));
         }
     }
