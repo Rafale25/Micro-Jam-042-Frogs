@@ -183,10 +183,10 @@ public class AudioManager : MonoBehaviour
 
     public static void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
+        // AudioListener.volume = volume;
 
         // TODO: use master audio mixer instead
-        // instance.audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+        Instance._audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
     public static void SetVolume(AudioType type, float volume)

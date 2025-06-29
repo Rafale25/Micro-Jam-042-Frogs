@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a9f064a2b87b5d4c87e64c53aaf77bf, type: 3}
   - {fileID: 8300000, guid: 9a650e7aee907124ead1a38425333dfc, type: 3}
   - {fileID: 8300000, guid: ea3e1a86178cf8543b5b5111299b943d, type: 3}
-  volume: {x: 1, y: 1}
+  volume: {x: 0.4, y: 0.4}
   pitch: {x: 1, y: 1}
   spatialBlend: 0
