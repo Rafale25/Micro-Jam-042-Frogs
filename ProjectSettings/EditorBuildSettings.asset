@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Setting.unity
     guid: 77bdcc3230d9e534a91ebfc3e568bec3
   - enabled: 1
+    path: Assets/Scenes/blabla.unity
+    guid: 63407032725a7b141892d91b760e7fe4
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: a959df0a05d56d442908c5b54998e38f
   - enabled: 1
