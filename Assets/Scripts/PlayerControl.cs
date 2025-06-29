@@ -87,7 +87,13 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        bool previousFrameIsGrounded = _isGrounded;
         _isGrounded = _groundDetector.IsGrounded;
+
+        if (!previousFrameIsGrounded && _isGrounded)
+        {
+            _SOLand.Play();
+        }
 
         if (_grabbed)
         {
