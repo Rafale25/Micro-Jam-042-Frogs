@@ -64,6 +64,16 @@ public class AudioManager : MonoBehaviour
         _playingSoundsCount = _audioPool.PlayingCount;
     }
 
+    public static bool IsMusicPlaying()
+    {
+        return Instance._musicSource.isPlaying;
+    }
+
+    public static void SetMusicLoop(bool loop)
+    {
+        Instance._musicSource.loop = loop;
+    }
+
     public static void PlayMusic(string name)
     {
         Instance._musicSource.clip = Instance._soundsMap[name].clip;
