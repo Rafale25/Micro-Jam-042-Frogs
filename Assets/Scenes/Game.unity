@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 58616510}
   - component: {fileID: 58616509}
   m_Layer: 0
-  m_Name: chrono
+  m_Name: Chrono
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,8 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chronoTimer: 0
-  chronoDisplay: 0
-  startChrono: {fileID: 526131040}
   timerRunning: 0
   timerText: {fileID: 2053996303}
 --- !u!4 &58616510
@@ -167,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 58616508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 246.81871, y: 328.09418, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5011,98 +5009,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!1 &249073326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 249073329}
-  - component: {fileID: 249073328}
-  - component: {fileID: 249073327}
-  m_Layer: 0
-  m_Name: finishChrono
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &249073327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249073326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f035841212d3aa3419315221ef559ece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chrono: {fileID: 58616508}
---- !u!61 &249073328
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249073326}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.02431798, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 6.6075673, y: 1}
-  m_EdgeRadius: 0
---- !u!4 &249073329
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249073326}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299552839
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,7 +5313,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.2033005, z: -10}
+  m_LocalPosition: {x: 0, y: -6.1950536, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5458,7 +5364,7 @@ GameObject:
   - component: {fileID: 526131040}
   - component: {fileID: 526131041}
   m_Layer: 0
-  m_Name: startChrono
+  m_Name: StartChrono
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5498,7 +5404,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000047683716, y: 0}
+  m_Offset: {x: 0, y: -0.36133242}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5508,7 +5414,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 18.655159, y: 1}
+  m_Size: {x: 18.655159, y: 1.7226648}
   m_EdgeRadius: 0
 --- !u!114 &526131041
 MonoBehaviour:
@@ -5522,7 +5428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eee7ffce6ade7a428d96266b6c8e6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chrono: {fileID: 58616508}
+  _chrono: {fileID: 58616509}
 --- !u!4 &526131042
 Transform:
   m_ObjectHideFlags: 0
@@ -5532,7 +5438,7 @@ Transform:
   m_GameObject: {fileID: 526131039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.64, z: 0}
+  m_LocalPosition: {x: 0, y: -6.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8961,6 +8867,7 @@ GameObject:
   - component: {fileID: 1448195904}
   - component: {fileID: 1448195905}
   - component: {fileID: 1448195906}
+  - component: {fileID: 1448195907}
   m_Layer: 0
   m_Name: WinConditionHitbox
   m_TagString: Untagged
@@ -9043,6 +8950,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextSceneName: GameEnd
   _canvasGroup: {fileID: 1402750536}
+--- !u!114 &1448195907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448195903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f035841212d3aa3419315221ef559ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chrono: {fileID: 58616509}
 --- !u!4 &1554211521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8228554106914995350, guid: 78224bb3f2ab1584595b90a986c43ac1, type: 3}
@@ -9235,8 +9155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bf67e1e088b29438dd969e3652e513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aspectRatioY: 4
-  _aspectRatioX: 3
   _backgroundSpriteRenderer: {fileID: 891966906}
 --- !u!114 &1770161346
 MonoBehaviour:
@@ -9871,7 +9789,6 @@ SceneRoots:
   - {fileID: 807144246}
   - {fileID: 1713668043}
   - {fileID: 460999224}
-  - {fileID: 249073329}
   - {fileID: 526131042}
   - {fileID: 58616510}
   - {fileID: 2005652882}
