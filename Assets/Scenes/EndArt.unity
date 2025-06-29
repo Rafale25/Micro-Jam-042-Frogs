@@ -283,7 +283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click left to return to menu
+  m_text: Click left to return to menu...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45bff6dc9f5171b48893a93ad34ea265, type: 2}
   m_sharedMaterial: {fileID: -4455609117721228378, guid: 45bff6dc9f5171b48893a93ad34ea265, type: 2}
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameObject: {fileID: 400980601}
-  _seconds: 8
+  _seconds: 12
   _active: 1
 --- !u!4 &1429990078
 Transform:

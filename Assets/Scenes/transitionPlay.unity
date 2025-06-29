@@ -705,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: _seconds
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: m_Enabled
@@ -713,11 +713,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: _sceneName
-      value: Game
+      value: blabla
       objectReference: {fileID: 0}
     - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: _transitionDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4039107791112933407, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: m_Name

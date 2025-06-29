@@ -1347,6 +1347,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
+      propertyPath: _seconds
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961100145774103840, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
+      propertyPath: _transitionDuration
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4039107791112933407, guid: fd858ce6dd2f19c4b9b52b50b37b6106, type: 3}
       propertyPath: m_Name
       value: TransitionTimer
