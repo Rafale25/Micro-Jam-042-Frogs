@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicName: MENU
+  _loop: 1
 --- !u!1 &375346260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1352,7 @@ PrefabInstance:
     - target: {fileID: 8203377598306071849, guid: 1a3fd28d7a00182429bd7dd6cc7ecafd, type: 3}
       propertyPath: _audioMixerGroupEffects
       value: 
-      objectReference: {fileID: -594656408030529099, guid: 556be146306e84a4b8c7cab607b26627, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8203377598306071849, guid: 1a3fd28d7a00182429bd7dd6cc7ecafd, type: 3}
       propertyPath: _audioMixerGroupGameplay
       value: 

@@ -7,18 +7,29 @@ public class MusicSequence : MonoBehaviour
 
     private int _musicIndex = 0;
 
+    void Start()
+    {
+        AudioManager.SetMusicLoop(false);
+        PlayNext();
+    }
+
     void Update()
     {
         if (_musicIndex >= _musicsNames.Length) return;
         if (!AudioManager.IsMusicPlaying())
         {
-            if (_musicIndex == _musicsNames.Length - 1)
-            {
-                AudioManager.SetMusicLoop(_loopLast);
-            }
-
-            AudioManager.PlayMusic(_musicsNames[_musicIndex]);
-            _musicIndex += 1;
+            PlayNext();
         }
+    }
+
+    private void PlayNext()
+    {
+        if (_musicIndex == _musicsNames.Length - 1)
+        {
+            AudioManager.SetMusicLoop(_loopLast);
+        }
+
+        AudioManager.PlayMusic(_musicsNames[_musicIndex]);
+        _musicIndex += 1;
     }
 }
