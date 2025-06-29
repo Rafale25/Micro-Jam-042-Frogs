@@ -49,6 +49,9 @@ public class PlayerControl : MonoBehaviour
 
     // Sound effects
     [SerializeField] private SoundEffectSO _SOGrab;
+    [SerializeField] private SoundEffectSO _SOBleh;
+    [SerializeField] private SoundEffectSO _SOJump;
+    [SerializeField] private SoundEffectSO _SOLand;
 
     void Awake()
     {
@@ -223,6 +226,7 @@ public class PlayerControl : MonoBehaviour
             // Debug.Log("Jump");
             float timer = Mathf.Clamp(_jumpTimer, 0f, _maxJumpTime);
             _rigidbody.AddForceY(_maxJumpForce * Utilities.MapRange(timer, 0f, _maxJumpTime, 0f, 1f));
+            _SOJump.Play();
         }
         else
         {

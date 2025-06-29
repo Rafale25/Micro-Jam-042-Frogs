@@ -417,6 +417,9 @@ MonoBehaviour:
   - {fileID: 2243178205992818926}
   _tongueOriginParent: {fileID: 8677560594494552651}
   _SOGrab: {fileID: 11400000, guid: b3b8e0d951718d642aaaeb31657395a0, type: 2}
+  _SOBleh: {fileID: 11400000, guid: 175edd1b108b1404cba45d6287d0d40c, type: 2}
+  _SOJump: {fileID: 11400000, guid: 1d28fa45a175b2e4e85c01b13420cf79, type: 2}
+  _SOLand: {fileID: 11400000, guid: e73329c492cd6244fb9053a7814985b7, type: 2}
 --- !u!114 &1947927289625549244
 MonoBehaviour:
   m_ObjectHideFlags: 0
