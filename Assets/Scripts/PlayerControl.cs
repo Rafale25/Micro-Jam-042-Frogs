@@ -38,6 +38,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Sprite[] _spriteJumpFront;
     [SerializeField] private Sprite[] _spriteJumpRight;
 
+    [SerializeField] private GameObject[] _tongueOrigin;
+    [SerializeField] private GameObject _tongueOriginParent;
+
+    int _currentTongueOrigin = 0;
+    bool _flipTongueXAxis = false;
+
     Coroutine _realInCoroutine = null;
     Coroutine _animationCoroutine = null;
 
@@ -99,7 +105,9 @@ public class PlayerControl : MonoBehaviour
             }
 
             // update tongue position
-            Vector3[] positions = { transform.position, _springJointAnchor };
+            _tongueOriginParent.transform.localScale = new Vector3(_flipTongueXAxis ? -1 : 1, 1, 1);
+            Vector2 tongueOrigin = _tongueOrigin[_currentTongueOrigin].transform.position;
+            Vector3[] positions = { tongueOrigin, _springJointAnchor };
             _lineRenderer.SetPositions(positions);
             _lineRenderer.enabled = true;
         }
@@ -122,32 +130,35 @@ public class PlayerControl : MonoBehaviour
                 _jumpTimer += Time.deltaTime;
                 StopAnimation();
                 _spriteRenderer.sprite = _spriteJumpFront[0];
+                _currentTongueOrigin = 3;
             }
             else
             {
                 StartAnimation(_spriteIdle);
+                _currentTongueOrigin = 0;
             }
         }
         else
         {
-            float angle = Mathf.Atan2(playerVelocity.y, playerVelocity.x);
-            // Debug.Log(angle);
-
-            Debug.Log(playerVelocity);
-
-            // Vector2 dir = (_cursorWorldPos - _transform.position.xy()).normalized;
-            // float angle = Mathf.Atan2(dir.y, dir.x);
-            // Debug.Log(angle);
-
             if (Mathf.Abs(playerVelocity.x) < 0.001f)
             {
                 if (playerVelocity.y > 0f)
                 {
-                    _spriteRenderer.sprite = playerVelocity.y > 10f ? _spriteJumpFront[1] : _spriteJumpFront[2];
+                    if (playerVelocity.y > 10f)
+                    {
+                        _spriteRenderer.sprite = _spriteJumpFront[1];
+                        _currentTongueOrigin = 1;
+                    }
+                    else
+                    {
+                        _spriteRenderer.sprite = _spriteJumpFront[2];
+                        _currentTongueOrigin = 1;
+                    }
                 }
                 else
                 {
                     _spriteRenderer.sprite = _spriteJumpFront[3];
+                    _currentTongueOrigin = 4;
                 }
             }
             else
@@ -155,14 +166,17 @@ public class PlayerControl : MonoBehaviour
                 if (playerVelocity.y > 3f)
                 {
                     _spriteRenderer.sprite = _spriteJumpRight[1];
+                    _currentTongueOrigin = 4;
                 }
                 else if (playerVelocity.y > -3f)
                 {
                     _spriteRenderer.sprite = _spriteJumpRight[2];
+                    _currentTongueOrigin = 5;
                 }
                 else
                 {
                     _spriteRenderer.sprite = _spriteJumpRight[3];
+                    _currentTongueOrigin = 6;
                 }
             }
         }
@@ -170,6 +184,7 @@ public class PlayerControl : MonoBehaviour
         if (Mathf.Abs(playerVelocity.x) > 0.001f)
         {
             _spriteRenderer.flipX = playerVelocity.x < 0f;
+            _flipTongueXAxis = playerVelocity.x < 0f;
         }
     }
 
