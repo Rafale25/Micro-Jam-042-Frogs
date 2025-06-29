@@ -134,10 +134,10 @@ TextureImporter:
       name: Heart_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 13
-        height: 25
+        x: 0
+        y: 20
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: Heart_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 1
-        width: 31
-        height: 29
+        x: 20
+        y: 20
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: Heart_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 25
-        width: 9
-        height: 6
+        x: 40
+        y: 20
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: Heart_3
       rect:
         serializedVersion: 2
-        x: 85
-        y: 24
-        width: 11
-        height: 8
+        x: 60
+        y: 20
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,10 +222,10 @@ TextureImporter:
       name: Heart_4
       rect:
         serializedVersion: 2
-        x: 23
-        y: 2
-        width: 15
-        height: 12
+        x: 80
+        y: 20
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: Heart_5
       rect:
         serializedVersion: 2
-        x: 61
+        x: 0
         y: 0
-        width: 19
-        height: 16
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,10 +266,10 @@ TextureImporter:
       name: Heart_6
       rect:
         serializedVersion: 2
-        x: 80
+        x: 20
         y: 0
         width: 20
-        height: 17
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,11 +284,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Heart_7
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6c4788f0a12944481277c412d39eb7
+      internalID: 254648941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_8
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd77888bbe81b442abc38461b26a0c2
+      internalID: -101428048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db641babc02e7dd47922e427e93acd8e
+      internalID: 1605517264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: df8efb59f0683b04994465e585e99eec
     internalID: 0
     vertices: []
     indices: 
@@ -296,7 +362,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":20.0,"y":20.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Heart_0: 4606908045521496030
       Heart_1: -4195582761621981391
@@ -305,6 +373,9 @@ TextureImporter:
       Heart_4: 615023859997206797
       Heart_5: -3650377147373918042
       Heart_6: 2309896351881654512
+      Heart_7: 254648941
+      Heart_8: -101428048
+      Heart_9: 1605517264
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

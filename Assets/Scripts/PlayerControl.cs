@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     private LineRenderer _lineRenderer;
     private SpriteRenderer _spriteRenderer;
     private GroundDetector _groundDetector;
+    [SerializeField] private GameObject _tongueEnd;
 
     private Vector2 _cursorWorldPos = Vector2.zero;
 
@@ -122,10 +123,15 @@ public class PlayerControl : MonoBehaviour
             Vector3[] positions = { tongueOrigin, _springJointAnchor };
             _lineRenderer.SetPositions(positions);
             _lineRenderer.enabled = true;
+
+            _tongueEnd.SetActive(true);
+            _tongueEnd.transform.position = new Vector3(_springJointAnchor.x, _springJointAnchor.y, 0f);
         }
         else
         {
             _lineRenderer.enabled = false;
+            _tongueEnd.SetActive(false);
+
         }
 
         if (!_isGrounded)

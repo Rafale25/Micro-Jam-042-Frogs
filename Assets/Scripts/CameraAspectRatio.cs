@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraAspectRatio : MonoBehaviour
 {
-    [SerializeField] private float _aspectRatioY = 4f;
-    [SerializeField] private float _aspectRatioX = 3f;
+    // [SerializeField] private float _aspectRatioY = 4f;
+    // [SerializeField] private float _aspectRatioX = 3f;
 
     [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
 
