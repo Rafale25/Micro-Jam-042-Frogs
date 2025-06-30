@@ -198,6 +198,12 @@ public class AudioManager : MonoBehaviour
         Instance._audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
+    public static float GetMasterVolume()
+    {
+        Instance._audioMixer.GetFloat("Master", out float volume);
+        return Mathf.Pow(10f, volume / 20f);
+    }
+
     public static void SetVolume(AudioType type, float volume)
     {
         volume = Mathf.Clamp(volume, 0.0001f, 1f); // TODO: find if possible to clamp to 0 instead of 0.0001
