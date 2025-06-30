@@ -990,8 +990,8 @@ Canvas:
   m_GameObject: {fileID: 714090335}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1823118451}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1002,7 +1002,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &714090339
 RectTransform:
@@ -1496,6 +1496,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4709456396536258026, guid: 97b7d836ca704cd48a87ffce3731260f, type: 3}
+    - target: {fileID: 7647924097818207133, guid: 1c571196b45fd004eb9a66a2ffd27c09, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1751,6 +1755,7 @@ GameObject:
   - component: {fileID: 1823118451}
   - component: {fileID: 1823118450}
   - component: {fileID: 1823118453}
+  - component: {fileID: 1823118454}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1876,6 +1881,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1823118454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823118449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bf67e1e088b29438dd969e3652e513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aspectRatioY: 4
+  _aspectRatioX: 3
 --- !u!1 &2053422302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +1978,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 714090339}
     m_Modifications:
+    - target: {fileID: 1953364624187979603, guid: 2c00b01db66200841b551223dfb9457d, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762485228013104664, guid: 2c00b01db66200841b551223dfb9457d, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7096502570342903920, guid: 2c00b01db66200841b551223dfb9457d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2111,9 +2138,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1823118452}
   - {fileID: 1547992567}
-  - {fileID: 714090339}
   - {fileID: 1032508493}
   - {fileID: 261432794}
   - {fileID: 1272503892}
   - {fileID: 1190722282}
   - {fileID: 6849047850994517313}
+  - {fileID: 714090339}
