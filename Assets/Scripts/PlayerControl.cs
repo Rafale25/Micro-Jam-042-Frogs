@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     private bool _isGrounded = false;
 
     [SerializeField] private float _realInDuration = 0.3f;
-    [SerializeField] private float _realInDistance = 1.5f;
+    [SerializeField] private float _realInDistance = 4f;
 
     [SerializeField] private float _springDampingRatio = 1f;
     [SerializeField] private float _springFrequency = 1f;
