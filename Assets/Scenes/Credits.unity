@@ -279,7 +279,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Ewen Le Loarer (Riven) : Programmer \nRafale25 : Programmer\nMadeleine
-    Peillon (Egrassah) : Music\nSao My Morel (Sao) : Art\n"
+    Peillon (Egrassah) : Music & sfx\nSao My Morel (Sao) : Art\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45bff6dc9f5171b48893a93ad34ea265, type: 2}
   m_sharedMaterial: {fileID: -4455609117721228378, guid: 45bff6dc9f5171b48893a93ad34ea265, type: 2}
