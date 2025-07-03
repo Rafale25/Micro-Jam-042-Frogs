@@ -93,7 +93,10 @@ public class PlayerControl : MonoBehaviour
 
         if (!previousFrameIsGrounded && _isGrounded)
         {
-            _SOLand.Play();
+            if (Time.timeSinceLevelLoad > 0.1) // To avoid landing sound playing on first frame
+            {
+                _SOLand.Play();
+            }
         }
 
         if (_grabbed)
