@@ -77,7 +77,7 @@ public class AudioManager : MonoBehaviour
         {
             QueuedMusic queuedMusic = Instance._musicQueue.Dequeue();
             PlayMusic(queuedMusic.name);
-            SetMusicLoop(true);
+            SetMusicLoop(queuedMusic.loop);
         }
     }
 
