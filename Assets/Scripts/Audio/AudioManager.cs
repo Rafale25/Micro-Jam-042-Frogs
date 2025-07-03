@@ -13,6 +13,13 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
 
+    private struct QueuedMusic
+    {
+        public string name;
+        public bool loop;
+        public QueuedMusic(string name, bool loop = false) { this.name = name; this.loop = loop; }
+    };
+
     public static AudioManager Instance;
 
     [SerializeField] private AudioMixer _audioMixer;
@@ -27,6 +34,8 @@ public class AudioManager : MonoBehaviour
     private IDictionary<string, Sound> _soundsMap = new Dictionary<string, Sound>();
 
     private AudioPool _audioPool = new();
+
+    private Queue<QueuedMusic> _musicQueue = new(); // (string musicName, bool loop)
 
     [SerializeField] private int _poolSize;
     [SerializeField] private int _playingSoundsCount;
@@ -62,6 +71,14 @@ public class AudioManager : MonoBehaviour
 
         _poolSize = _audioPool.PoolCount;
         _playingSoundsCount = _audioPool.PlayingCount;
+
+
+        if (!IsMusicPlaying() && Instance._musicQueue.Count > 0)
+        {
+            QueuedMusic queuedMusic = Instance._musicQueue.Dequeue();
+            PlayMusic(queuedMusic.name);
+            SetMusicLoop(true);
+        }
     }
 
     public static bool IsMusicPlaying()
@@ -76,6 +93,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayMusic(string name)
     {
+        // Will ignore the music queue
         Instance._musicSource.clip = Instance._soundsMap[name].clip;
         Instance._musicSource.Play();
     }
@@ -223,6 +241,16 @@ public class AudioManager : MonoBehaviour
                 Debug.LogError("Audio type " + type + " doesn't exist!");
                 break;
         }
+    }
+
+    public static void AddMusicToQueue(string musicName, bool loop = false)
+    {
+        Instance._musicQueue.Enqueue(new QueuedMusic(musicName, loop));
+    }
+
+    public static void ClearMusicQueue()
+    {
+        Instance._musicQueue.Clear();
     }
 
     public static void TransitionToSnapshot(string snapshotName)
