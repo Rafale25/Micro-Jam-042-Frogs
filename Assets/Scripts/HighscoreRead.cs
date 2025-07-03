@@ -12,7 +12,8 @@ public class HighscoreRead : MonoBehaviour
 
     void Start()
     {
-        float score = PlayerPrefs.GetFloat("Highscore");
+        float score = HighscoreStore.LastScore;
+        // float score = PlayerPrefs.GetFloat("Highscore");
         _text.text = score.ToString("F2");
     }
 }

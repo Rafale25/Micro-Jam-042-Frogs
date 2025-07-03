@@ -27,10 +27,22 @@ public class Chrono : MonoBehaviour
     {
         timerRunning = false;
 
-        float currentHighscore = PlayerPrefs.GetFloat("Highscore");
+        // float currentHighscore = PlayerPrefs.GetFloat("Highscore");
+        float currentHighscore = HighscoreStore.Highscore <= 1f ? 100000f : HighscoreStore.Highscore;
+
+        // PlayerPrefs.SetFloat("LastScore", chronoTimer);
+        HighscoreStore.LastScore = chronoTimer;
+
         if (chronoTimer < currentHighscore)
         {
+            HighscoreStore.MadeNewHighscore = true;
+            HighscoreStore.Highscore = chronoTimer;
+
             PlayerPrefs.SetFloat("Highscore", chronoTimer);
+        }
+        else
+        {
+            HighscoreStore.MadeNewHighscore = false;
         }
     }
 }
