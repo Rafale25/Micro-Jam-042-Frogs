@@ -27,22 +27,16 @@ public class Chrono : MonoBehaviour
     {
         timerRunning = false;
 
-        // float currentHighscore = PlayerPrefs.GetFloat("Highscore");
-        float currentHighscore = HighscoreStore.Highscore <= 1f ? 100000f : HighscoreStore.Highscore;
+        var store = new HighscoreStoreWeb();
+        float highScore = store.GetHighScore();
 
-        // PlayerPrefs.SetFloat("LastScore", chronoTimer);
-        HighscoreStore.LastScore = chronoTimer;
+        float currentHighscore = highScore <= 1f ? 100000f : highScore;
 
         if (chronoTimer < currentHighscore)
         {
-            HighscoreStore.MadeNewHighscore = true;
-            HighscoreStore.Highscore = chronoTimer;
+            store.SetHighScore(chronoTimer);
+        }
 
-            PlayerPrefs.SetFloat("Highscore", chronoTimer);
-        }
-        else
-        {
-            HighscoreStore.MadeNewHighscore = false;
-        }
+        store.SetLatestScore(chronoTimer);
     }
 }

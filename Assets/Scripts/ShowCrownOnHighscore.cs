@@ -7,7 +7,11 @@ public class ShowCrownOnHighscore : MonoBehaviour
 
     void Start()
     {
-        if (HighscoreStore.MadeNewHighscore)
+        var store = new HighscoreStoreWeb();
+        float latestScore = store.GetLatestScore();
+        float highScore = store.GetHighScore();
+
+        if (highScore == latestScore)
         {
             _image.enabled = true;
         }
@@ -15,7 +19,5 @@ public class ShowCrownOnHighscore : MonoBehaviour
         {
             _image.enabled = false;
         }
-
-        HighscoreStore.MadeNewHighscore = false;
     }
 }

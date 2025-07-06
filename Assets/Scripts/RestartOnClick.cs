@@ -25,6 +25,6 @@ public class RestartOnClick : MonoBehaviour
     void MiddleClick(InputAction.CallbackContext context)
     {
         TransitionManager.Instance.TransitionToScene("Game", 0.25f);
-        HighscoreStore.MadeNewHighscore = false;
+        // HighscoreStore.MadeNewHighscore = false;
     }
 }
