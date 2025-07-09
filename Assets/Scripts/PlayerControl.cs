@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour
     private GroundDetector _groundDetector;
     [SerializeField] private GameObject _tongueEnd;
 
+    [SerializeField] private GameObject[] _bloodSplatters;
+
     private Vector2 _cursorWorldPos = Vector2.zero;
 
     private bool _grabbed = false;
@@ -95,6 +97,15 @@ public class PlayerControl : MonoBehaviour
         {
             if (Time.timeSinceLevelLoad > 0.1) // To avoid landing sound playing on first frame
             {
+                var hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _maskLevel);
+                if (hit)
+                {
+                    // To align sprite with tilemap pixels
+                    const float r = 1f / 16f; // hardcoded (tilemap tiles are 16x16)
+                    var p = new Vector2(hit.point.x - (hit.point.x % r), hit.point.y - (hit.point.y % r));
+                    Instantiate(_bloodSplatters[0], p, Quaternion.identity);
+                }
+
                 _SOLand.Play();
             }
         }

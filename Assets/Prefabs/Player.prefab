@@ -357,6 +357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tongueEnd: {fileID: 8270771724294933103}
+  _bloodSplatters:
+  - {fileID: 3072426416236889084, guid: 9a48a1ed360afb34eae7e5d5acb547f9, type: 3}
   _maxJumpTime: 0.5
   _maxJumpForce: 1400
   _realInDuration: 0.3
