@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private GameObject _tongueEnd;
 
     [SerializeField] private GameObject[] _bloodSplatters;
+    [SerializeField] private GameObject[] _bodyParts;
 
     private Vector2 _cursorWorldPos = Vector2.zero;
 
@@ -97,15 +99,6 @@ public class PlayerControl : MonoBehaviour
         {
             if (Time.timeSinceLevelLoad > 0.1) // To avoid landing sound playing on first frame
             {
-                var hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _maskLevel);
-                if (hit)
-                {
-                    // To align sprite with tilemap pixels
-                    const float r = 1f / 16f; // hardcoded (tilemap tiles are 16x16)
-                    var p = new Vector2(hit.point.x - (hit.point.x % r), hit.point.y - (hit.point.y % r));
-                    Instantiate(_bloodSplatters[0], p, Quaternion.identity);
-                }
-
                 _SOLand.Play();
             }
         }
@@ -330,5 +323,63 @@ public class PlayerControl : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!gameObject.activeSelf) return;
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
+        {
+            print($"OnTriggerEnter2D {collision.gameObject.name}");
+            Death();
+        }
+    }
+
+    void SpawnBloodSplatters()
+    {
+        var hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _maskLevel);
+        // if (hit)
+        // {
+        //     // To align sprite with tilemap pixels
+        //     const float r = 1f / 16f; // hardcoded (tilemap tiles are 16x16)
+        //     var p = new Vector2(hit.point.x - (hit.point.x % r), hit.point.y - (hit.point.y % r));
+        //     Instantiate(_bloodSplatters[0], p, Quaternion.identity);
+        // }
+        Vector2 originP = transform.position.xy();
+
+        if (hit)
+        {
+            originP = hit.point;
+        }
+
+        // foreach (int i in Enumerable.Range(0, 3))
+        // {
+        Vector2 p = originP;// + Random.insideUnitCircle * 0.3f;
+        const float r = 1f / 16f; // hardcoded (tilemap tiles are 16x16)
+        p.x -= p.x % r;
+        p.y -= p.y % r;
+        Instantiate(_bloodSplatters[0], p, Quaternion.identity);
+        // }
+    }
+
+    void Death()
+    {
+        SpawnBloodSplatters();
+
+        foreach (var bodypart in _bodyParts)
+        {
+            var part = Instantiate(bodypart, transform.position, Quaternion.identity);
+
+            Vector2 outwardRandomForce = Random.insideUnitCircle * Random.Range(1f, 1.5f);
+            part.GetComponent<Rigidbody2D>().linearVelocity = _rigidbody.linearVelocity * 0.7f + outwardRandomForce;
+            DontDestroyOnLoad(part);
+        }
+
+        gameObject.SetActive(false);
+
+        FindFirstObjectByType<AudioManager>().Invoke(
+            () => { TransitionManager.Instance.TransitionToScene("Game", 0.2f); },
+            1.5f
+        );
     }
 }
