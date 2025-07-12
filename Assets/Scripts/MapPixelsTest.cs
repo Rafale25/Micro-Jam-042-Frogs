@@ -42,9 +42,7 @@ public class MapPixelsTest : MonoBehaviour
                 var cellPos = _tilemap.origin + new Vector3Int((int)((float)x / pixelPerUnit), (int)((float)y / pixelPerUnit));
                 // _textureBitmapMask[index] = _tilemap.GetTile(cellPos) != null;
                 var sp = _tilemap.GetSprite(cellPos);
-                // sp.texture.isR
                 _textureBitmapMask[index] = sp != null && sp.texture.GetPixel(localX, localY) != Color.clear;
-
                 // I WAS HERE : WTF ?
             }
         }
