@@ -21,7 +21,7 @@ public class MapPixelsTest : MonoBehaviour
 
         // print(_tilemap.tileAnchor);
         // print(_tilemap.localBounds);
-        print(_tilemap.origin);
+        // print(_tilemap.origin);
         // print(_tilemap.size);
 
         _textureWidth = _tilemap.size.x * pixelPerUnit;
@@ -36,11 +36,16 @@ public class MapPixelsTest : MonoBehaviour
             for (int x = 0; x < _textureWidth; ++x)
             {
                 int index = y * _textureWidth + x;
-                // int localX = x % pixelPerUnit;
-                // int localY = y % pixelPerUnit;
+                int localX = x % pixelPerUnit;
+                int localY = y % pixelPerUnit;
 
                 var cellPos = _tilemap.origin + new Vector3Int((int)((float)x / pixelPerUnit), (int)((float)y / pixelPerUnit));
-                _textureBitmapMask[index] = _tilemap.GetTile(cellPos) != null;
+                // _textureBitmapMask[index] = _tilemap.GetTile(cellPos) != null;
+                var sp = _tilemap.GetSprite(cellPos);
+                // sp.texture.isR
+                _textureBitmapMask[index] = sp != null && sp.texture.GetPixel(localX, localY) != Color.clear;
+
+                // I WAS HERE : WTF ?
             }
         }
 
