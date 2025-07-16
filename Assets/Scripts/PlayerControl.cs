@@ -58,6 +58,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private SoundEffectSO _SOJump;
     [SerializeField] private SoundEffectSO _SOLand;
 
+    [SerializeField] private GameObject _bloodDrop;
+
     void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -362,9 +364,22 @@ public class PlayerControl : MonoBehaviour
         // }
     }
 
+    void SpawnBloodDrops()
+    {
+        for (int i = 0; i < 6; ++i)
+        {
+            var bd = Instantiate(_bloodDrop, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            bd.GetComponent<Rigidbody2D>().linearVelocity =
+                _rigidbody.linearVelocity * 0.5f
+                + Random.insideUnitCircle * 4f
+                + Vector2.up * 1f;
+        }
+    }
+
     void Death()
     {
         SpawnBloodSplatters();
+        SpawnBloodDrops();
 
         foreach (var bodypart in _bodyParts)
         {

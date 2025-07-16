@@ -359,6 +359,7 @@ MonoBehaviour:
   _tongueEnd: {fileID: 8270771724294933103}
   _bloodSplatters:
   - {fileID: 3072426416236889084, guid: 9a48a1ed360afb34eae7e5d5acb547f9, type: 3}
+  _bodyParts: []
   _maxJumpTime: 0.5
   _maxJumpForce: 1400
   _realInDuration: 0.3
@@ -392,6 +393,7 @@ MonoBehaviour:
   _SOBleh: {fileID: 11400000, guid: 175edd1b108b1404cba45d6287d0d40c, type: 2}
   _SOJump: {fileID: 11400000, guid: 1d28fa45a175b2e4e85c01b13420cf79, type: 2}
   _SOLand: {fileID: 11400000, guid: e73329c492cd6244fb9053a7814985b7, type: 2}
+  _bloodDrop: {fileID: 2592137745970320582, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
 --- !u!114 &1947927289625549244
 MonoBehaviour:
   m_ObjectHideFlags: 0

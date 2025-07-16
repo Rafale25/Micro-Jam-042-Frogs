@@ -5353,7 +5353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &499451371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5481,7 +5481,7 @@ GameObject:
   - component: {fileID: 504129945}
   - component: {fileID: 504129944}
   m_Layer: 0
-  m_Name: MapPixelsTest
+  m_Name: ProceduralBloodTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5705,7 +5705,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.14354, z: -10}
+  m_LocalPosition: {x: 0, y: -7.279043, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10698,6 +10698,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12a81171f74dac7449e69222272b8715, type: 3}
+--- !u!1001 &3885939731163699104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 993270844121359199, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592137745970320582, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
+      propertyPath: m_Name
+      value: BloodDrop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eea0b2ce96476ea4086eb9ddaae9439e, type: 3}
 --- !u!1001 &5395370371744807819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10907,3 +10964,4 @@ SceneRoots:
   - {fileID: 455810026}
   - {fileID: 504129945}
   - {fileID: 242254578}
+  - {fileID: 3885939731163699104}

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -11,7 +10,7 @@ using UnityEngine.Tilemaps;
 - player procedural sprite cut
 */
 
-public class MapPixelsTest : MonoBehaviour
+public class ProceduralBloodTilemap : MonoBehaviour
 {
     [SerializeField] private int _orderInLayer = 0;
 
@@ -103,7 +102,8 @@ public class MapPixelsTest : MonoBehaviour
         spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         spriteRenderer.sortingOrder = _orderInLayer;
         parent.transform.position = new Vector3(_tilemap.origin.x, _tilemap.origin.y, 0);
-
+        // DontDestroyOnLoad(parent);
+        // DontDestroyOnLoad(this);
     }
 
     void Update()
@@ -115,7 +115,7 @@ public class MapPixelsTest : MonoBehaviour
             var mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2Int p = WorldPositionToTextureLocalPosition(mouseWorld);
 
-            SpawnBlood(mouseWorld, Vector2.zero);
+            SpawnBlood(mouseWorld, Input.mousePositionDelta.xy()); // use mouse delta for DEBUGGING
 
             // var cellPos = _tilemap.origin + new Vector3Int((int)((float)p.x / pixelPerUnit), (int)((float)p.y / pixelPerUnit));
             // var sp = _tilemap.GetSprite(cellPos);
@@ -177,6 +177,8 @@ public class MapPixelsTest : MonoBehaviour
     {
         Vector2Int p = WorldPositionToTextureLocalPosition(worldPosition);
 
+        velocity = Vector2.Perpendicular(velocity);
+
         const int radius = 6;
         for (int y = -radius*2; y < radius*2; ++y)
         {
@@ -188,7 +190,6 @@ public class MapPixelsTest : MonoBehaviour
                 Vector2 point = new(x + 0.5f, y + 0.5f);
 
                 const float strechScale = 3f;
-                velocity = Vector2.Perpendicular(Input.mousePositionDelta.xy()); // use mouse delta for DEBUGGING
                 var stretchedPoint = StretchAlongDirection(point, velocity, strechScale);
 
                 float sqrDist = stretchedPoint.sqrMagnitude;// point.sqrMagnitude;
