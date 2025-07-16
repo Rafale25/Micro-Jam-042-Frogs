@@ -378,7 +378,7 @@ public class PlayerControl : MonoBehaviour
 
     void Death()
     {
-        SpawnBloodSplatters();
+        // SpawnBloodSplatters();
         SpawnBloodDrops();
 
         foreach (var bodypart in _bodyParts)
