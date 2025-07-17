@@ -96,18 +96,19 @@ public class ProceduralBloodTilemap : MonoBehaviour
     void CreateSpriteObject()
     {
         var sprite = Sprite.Create(_texture, new Rect(0, 0, _texture.width, _texture.height), Vector2.zero, pixelPerUnit);
-        var parent = new GameObject();
+        var parent = new GameObject("bloodSprite");
         var spriteRenderer = parent.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
         spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         spriteRenderer.sortingOrder = _orderInLayer;
         parent.transform.position = new Vector3(_tilemap.origin.x, _tilemap.origin.y, 0);
-        // DontDestroyOnLoad(parent);
-        // DontDestroyOnLoad(this);
+
+        parent.transform.parent = gameObject.transform;
     }
 
     void Update()
     {
+#if false
         try
         {
             if (!Input.GetMouseButtonDown(0)) return;
@@ -136,11 +137,7 @@ public class ProceduralBloodTilemap : MonoBehaviour
         {
             return;
         }
-
-        // Vector2Int p = WorldPositionToTextureLocalPosition(worldPosition);
-        // Vector2 playerPosition = FindFirstObjectByType<PlayerControl>().transform.position;
-        // playerPosition.y -= 1f;
-        // SpawnBlood(playerPosition);
+#endif
     }
 
     bool DrawBloodPixel(int x, int y)
@@ -180,7 +177,7 @@ public class ProceduralBloodTilemap : MonoBehaviour
         velocity = Vector2.Perpendicular(velocity);
 
         const int radius = 6;
-        for (int y = -radius*2; y < radius*2; ++y)
+        for (int y = -radius*2; y < radius*2; ++y) // *2 because the strech can could get outside of original radius
         {
             for (int x = -radius*2; x < radius*2; ++x)
             {

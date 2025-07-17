@@ -15,5 +15,7 @@ public class BloodDrop : MonoBehaviour
     {
         _proceduralBloodTilemap.SpawnBlood(transform.position, _rb.linearVelocity);
         Destroy(gameObject);
+        // GameManager.Instance.ProceduralBloodTilemapObject
+            // .GetComponent<ProceduralBloodTilemap>().SpawnBlood(transform.position, _rb.linearVelocity);
     }
 }

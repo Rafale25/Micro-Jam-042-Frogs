@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +29,11 @@ public class TransitionManager : MonoBehaviour
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
+    public void Transition(float duration, string transitionType = "fade", Action func = null)
+    {
+        StartCoroutine(Fade(duration, func));
+    }
+
     public void TransitionToScene(string sceneName, float duration, string transitionType = "fade")
     {
         StartCoroutine(FadeToScene(sceneName, duration));
@@ -38,7 +44,37 @@ public class TransitionManager : MonoBehaviour
         _canvasGroup = FindFirstObjectByType<CanvasGroup>();
     }
 
-    IEnumerator FadeToScene(string sceneName, float duration)
+    IEnumerator Fade(float duration = 1f, Action func = null)
+    {
+        float t = 0;
+
+        duration = Mathf.Max(0.0001f, duration);
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            t = Mathf.Clamp01(t);
+            _canvasGroup.alpha = t;
+            yield return null;
+        }
+
+        yield return null;
+
+        func?.Invoke();
+
+        _canvasGroup.alpha = 1f;
+
+        while (t > 0f)
+        {
+            t -= Time.deltaTime / duration;
+            t = Mathf.Clamp01(t);
+            _canvasGroup.alpha = t;
+            yield return null;
+        }
+
+    }
+
+    IEnumerator FadeToScene(string sceneName = null, float duration = 1f)
     {
         var op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;

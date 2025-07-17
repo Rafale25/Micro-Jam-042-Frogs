@@ -9,6 +9,7 @@ public class StopChrono : MonoBehaviour
         if (collision.GetComponent<PlayerControl>() != null)
         {
             _chrono.StopChrono();
+            _chrono.SaveHighscore();
         }
     }
 }

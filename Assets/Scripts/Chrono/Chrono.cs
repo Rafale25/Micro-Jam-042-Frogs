@@ -14,8 +14,8 @@ public class Chrono : MonoBehaviour
         if (timerRunning)
         {
             chronoTimer += Time.deltaTime;
-            timerText.SetText(chronoTimer.ToString("F1"));
         }
+        timerText.SetText(chronoTimer.ToString("F1"));
     }
 
     public void StartChrono()
@@ -26,7 +26,15 @@ public class Chrono : MonoBehaviour
     public void StopChrono()
     {
         timerRunning = false;
+    }
 
+    public void ResetChrono()
+    {
+        chronoTimer = 0f;
+    }
+
+    public void SaveHighscore()
+    {
         var store = new HighscoreStoreWeb();
         float highScore = store.GetHighScore();
 

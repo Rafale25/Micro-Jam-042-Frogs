@@ -332,7 +332,7 @@ public class PlayerControl : MonoBehaviour
         if (!gameObject.activeSelf) return;
         if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
         {
-            print($"OnTriggerEnter2D {collision.gameObject.name}");
+            // print($"OnTriggerEnter2D {collision.gameObject.name}");
             Death();
         }
     }
@@ -387,14 +387,24 @@ public class PlayerControl : MonoBehaviour
 
             Vector2 outwardRandomForce = Random.insideUnitCircle * Random.Range(1f, 1.5f);
             part.GetComponent<Rigidbody2D>().linearVelocity = _rigidbody.linearVelocity * 0.7f + outwardRandomForce;
-            DontDestroyOnLoad(part);
         }
 
         gameObject.SetActive(false);
 
-        FindFirstObjectByType<AudioManager>().Invoke(
-            () => { TransitionManager.Instance.TransitionToScene("Game", 0.2f); },
-            1.5f
-        );
+        // use GameObject that won't get destroyed to invoke coroutine so the coroutine doesn't get destroyed
+        GameManager.Instance.Restart(1.5f);
+
+        // FindFirstObjectByType<AudioManager>().Invoke( // use audiomanager to invoke coroutine so the coroutine doesn't get destroyed
+        //     () => { TransitionManager.Instance.TransitionToScene("Game", 0.2f); },
+        //     1.5f
+        // );
+    }
+
+    public void ResetPlayerToDefault()
+    {
+        _rigidbody.linearVelocity = Vector2.zero;
+        _grabbed = false;
+        _springJoint.enabled = false;
+        gameObject.SetActive(true);
     }
 }
