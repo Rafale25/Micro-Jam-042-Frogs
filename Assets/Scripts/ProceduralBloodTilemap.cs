@@ -197,7 +197,7 @@ public class ProceduralBloodTilemap : MonoBehaviour
                 {
                     if (Random.value < 1f / 5f) //  20% chance of spawning a dripping blood-drop
                     {
-                        _bloodDrops.Add(new Bloodrop(px, py, Random.Range(4, 10)));
+                        _bloodDrops.Add(new Bloodrop(px, py, Random.Range(4, 12)));
                     }
                 }
 

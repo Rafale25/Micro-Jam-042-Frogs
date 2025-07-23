@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,10 +26,21 @@ public class GameManager : MonoBehaviour
 
     public void Restart(float delay = 0f)
     {
-        Instance.Invoke(
-            () => TransitionManager.Instance.Transition(0.2f, func: () => Instance.Reset()),
-            delay
-        );
+        if (SceneManager.GetActiveScene().name != "Game")
+        {
+            Instance.Invoke(
+                () => TransitionManager.Instance.TransitionToScene("Game", 0.2f),
+                1.5f
+            );
+        }
+        else
+        {
+            Instance.Invoke(
+                () => TransitionManager.Instance.Transition(0.2f, func: () => Instance.Reset()),
+                delay
+            );
+        }
+
     }
 
     public void Reset()
