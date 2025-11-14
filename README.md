@@ -26,8 +26,8 @@ _______________________________________
 
 ________________________________________
 
-Also playable here: https://rafale25.dev/Bleh  
-and here: https://rafale25.itch.io/bleh  
+itchio: https://rafale25.itch.io/bleh  
+Also playable here: https://rafale25.dev/Bleh
   
 Here's a video of the full game:
 https://www.youtube.com/watch?v=A3rZYD88vp8
