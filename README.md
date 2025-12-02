@@ -33,7 +33,9 @@ Here's a video of the full game:
 https://www.youtube.com/watch?v=A3rZYD88vp8
 
 
-<img width="45%" alt="image01" src="https://github.com/user-attachments/assets/fde3a943-0c64-45e0-b257-29639e0a24c0" />
-<img width="45%" alt="image02" src="https://github.com/user-attachments/assets/f5296aa9-7f04-445f-88d2-6a9cf2ab4ad0" />
-<img width="45%" alt="image03" src="https://github.com/user-attachments/assets/c5cf00e8-cd66-4436-a00e-fbd1fc59b291" />
-<img width="45%" alt="image04" src="https://github.com/user-attachments/assets/c4a2f3b7-0742-4847-a4f9-5e83dc66ee5b" />
+<p align="center">
+<img width="400px" alt="image01" src="https://github.com/user-attachments/assets/fde3a943-0c64-45e0-b257-29639e0a24c0" />
+<img width="400px" alt="image02" src="https://github.com/user-attachments/assets/f5296aa9-7f04-445f-88d2-6a9cf2ab4ad0" />
+<img width="400px" alt="image03" src="https://github.com/user-attachments/assets/c5cf00e8-cd66-4436-a00e-fbd1fc59b291" />
+<img width="400px" alt="image04" src="https://github.com/user-attachments/assets/c4a2f3b7-0742-4847-a4f9-5e83dc66ee5b" />
+</p>
