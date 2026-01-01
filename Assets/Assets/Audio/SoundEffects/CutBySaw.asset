@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 9416948aed2fd314c9a6299a1f039534, type: 3}
-  volume: {x: 0.7, y: 0.7}
+  volume: {x: 0.6, y: 0.6}
   pitch: {x: 0.65, y: 1.1}
   spatialBlend: 0

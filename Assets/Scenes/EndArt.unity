@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameObject: {fileID: 2048460557}
-  _seconds: 12
+  _seconds: 7
   _active: 1
 --- !u!4 &1429990078
 Transform:
