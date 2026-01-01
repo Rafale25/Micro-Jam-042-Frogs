@@ -327,7 +327,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (!gameObject.activeSelf) return;
         if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
@@ -335,6 +335,16 @@ public class PlayerControl : MonoBehaviour
             // print($"OnTriggerEnter2D {collision.gameObject.name}");
             Death();
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // if (!gameObject.activeSelf) return;
+        // if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
+        // {
+        //     // print($"OnTriggerEnter2D {collision.gameObject.name}");
+        //     Death();
+        // }
     }
 
     void SpawnBloodSplatters()
