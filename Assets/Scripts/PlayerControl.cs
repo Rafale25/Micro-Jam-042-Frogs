@@ -57,6 +57,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private SoundEffectSO _SOBleh;
     [SerializeField] private SoundEffectSO _SOJump;
     [SerializeField] private SoundEffectSO _SOLand;
+    [SerializeField] private SoundEffectSO _SOCutBySaw;
 
     [SerializeField] private GameObject _bloodDrop;
 
@@ -327,7 +328,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (!gameObject.activeSelf) return;
         if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
@@ -335,16 +336,6 @@ public class PlayerControl : MonoBehaviour
             // print($"OnTriggerEnter2D {collision.gameObject.name}");
             Death();
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // if (!gameObject.activeSelf) return;
-        // if (LayerMask.LayerToName(collision.gameObject.layer) == "Danger")
-        // {
-        //     // print($"OnTriggerEnter2D {collision.gameObject.name}");
-        //     Death();
-        // }
     }
 
     void SpawnBloodSplatters()
@@ -400,6 +391,8 @@ public class PlayerControl : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+
+        _SOCutBySaw.Play();
 
         // use GameObject that won't get destroyed to invoke coroutine so the coroutine doesn't get destroyed
         GameManager.Instance.Restart(1.5f);

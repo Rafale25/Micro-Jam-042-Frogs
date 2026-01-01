@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject); // Let it be destroyed so the variables below can be found again when the game change scene and restarts
 
         _player = FindFirstObjectByType<PlayerControl>().gameObject;
         _playerOriginalPosition = _player.transform.position;
@@ -28,14 +28,14 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Game")
         {
-            Instance.Invoke(
+            TransitionManager.Instance.Invoke(
                 () => TransitionManager.Instance.TransitionToScene("Game", 0.2f),
                 1.5f
             );
         }
         else
         {
-            Instance.Invoke(
+            TransitionManager.Instance.Invoke(
                 () => TransitionManager.Instance.Transition(0.2f, func: () => Instance.Reset()),
                 delay
             );
