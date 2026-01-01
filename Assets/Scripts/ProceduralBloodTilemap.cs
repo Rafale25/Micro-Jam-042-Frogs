@@ -25,11 +25,13 @@ public class ProceduralBloodTilemap : MonoBehaviour
     {
         public Vector2Int position;
         public int amount;
+        public float darkness;
 
-        public Bloodrop(int px, int py, int amount)
+        public Bloodrop(int px, int py, int amount, float darkness=1f)
         {
             this.position = new(px, py);
             this.amount = amount;
+            this.darkness = darkness;
         }
     }
 
@@ -140,11 +142,14 @@ public class ProceduralBloodTilemap : MonoBehaviour
 #endif
     }
 
-    bool DrawBloodPixel(int x, int y)
+    bool DrawBloodPixel(int x, int y, float darkness)
     {
         if (!IsInsideTextureBounds(x, y)) return false;
         if (_textureBitmapMask[y * _textureWidth + x] == false) return false;
-        _texture.SetPixel(x, y, Color.red);
+
+        Color color = Color.HSVToRGB(0f, 1f, darkness);
+
+        _texture.SetPixel(x, y, color);
         return true;
     }
 
@@ -176,6 +181,8 @@ public class ProceduralBloodTilemap : MonoBehaviour
 
         velocity = Vector2.Perpendicular(velocity);
 
+        float bloodDarkness = Random.Range(0.6f, 1.0f);
+
         const int radius = 6;
         for (int y = -radius*2; y < radius*2; ++y) // *2 because the strech can could get outside of original radius
         {
@@ -193,11 +200,11 @@ public class ProceduralBloodTilemap : MonoBehaviour
                 if (sqrDist > radius * radius) continue; // make the bllod mark round
                 if (Random.value * radius * radius < sqrDist) continue; // make the blood mark more natural with some random empty spots
 
-                if (DrawBloodPixel(px, py)) // if pixel was drawn
+                if (DrawBloodPixel(px, py, bloodDarkness)) // if pixel was drawn
                 {
                     if (Random.value < 1f / 5f) //  20% chance of spawning a dripping blood-drop
                     {
-                        _bloodDrops.Add(new Bloodrop(px, py, Random.Range(4, 12)));
+                        _bloodDrops.Add(new Bloodrop(px, py, Random.Range(4, 12), bloodDarkness));
                     }
                 }
 
@@ -215,7 +222,7 @@ public class ProceduralBloodTilemap : MonoBehaviour
 
             foreach (var bd in _bloodDrops)
             {
-                DrawBloodPixel(bd.position.x, bd.position.y);
+                DrawBloodPixel(bd.position.x, bd.position.y, bd.darkness);
                 bd.amount -= 1;
                 bd.position.y -= 1;
             }
