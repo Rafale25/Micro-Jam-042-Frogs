@@ -10,8 +10,8 @@ public interface IHighScoreStore
 
 public class HighscoreStoreWeb : IHighScoreStore
 {
-    const string KeyNameHighscore = "Highscore";
-    const string KeyNameLatestHighscore = "PreviousHighscore";
+    const string KeyNameHighscore = "Highscore_POP";
+    const string KeyNameLatestHighscore = "PreviousHighscore_POP";
 
     public void SetHighScore(float score)
     {
